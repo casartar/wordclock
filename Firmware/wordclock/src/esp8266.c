@@ -119,7 +119,7 @@ uint8_t esp8266_requestTime(void){
 			}
 			break;
 		case NTP_STATE_CWMODE:
-			switch(sendCWMODE(1,100)){
+			switch(sendCWMODE(1,500)){
 				case ERR_OK:
 					ntpState = NTP_STATE_RST2;
 					break;
@@ -187,7 +187,7 @@ uint8_t esp8266_requestTime(void){
 		case NTP_STATE_CIPNTP_CONF:
 			if (config.summertimeFlag) tmpGmtOffset = config.gmtOffsetSummertime;
 			else tmpGmtOffset = config.gmtOffsetWintertime;
-			switch(sendCIPNTPconf(tmpGmtOffset, 1000)){
+			switch(sendCIPNTPconf(tmpGmtOffset, 8000)){
 				case ERR_OK:
 					ntpState = NTP_STATE_CIPNTP_GET;
 					break;
@@ -239,7 +239,7 @@ uint8_t esp8266_requestTime(void){
 
 uint8_t esp8266_accessPoint(void){
 
-	char string [50];
+	char string [100];
 	static uint8_t methode = 0;
 	static uint8_t id = 0;
 	char ssid[SSID_MAX_LEN];
@@ -413,13 +413,21 @@ uint8_t esp8266_accessPoint(void){
 								break;
 							}
 							else if (*needle == '+') ssid[index] = ' ';
+							else if (*needle == '%'){
+								if (*(needle+1) == '2' && *(needle+2) == '1'){
+									// %21 means !
+									ssid[index] = '!';
+									needle++;
+									needle++;
+								}
+							}
 							else ssid[index] = *needle;
 							needle++;
 						}
 						needle = strstr(string,"pwd=");
 						needle = needle + 4;
 						for (uint8_t index = 0; index < PW_MAX_LEN; index++){
-							if (*needle == ' '){
+							if (*needle == '\0'){
 								pw[index] = '\0';
 								break;
 							}
@@ -502,6 +510,7 @@ uint8_t esp8266_accessPoint(void){
 			}
 			break;
 		case ACCESS_POINT_SEND_CLOSE:
+			uart1_sendString("Close1\n");
 			switch(sendCIPCLOSE(id,1000)){
 				case ERR_OK:
 					apState = ACCESS_POINT_RECEIVE;
@@ -514,17 +523,49 @@ uint8_t esp8266_accessPoint(void){
 					uart1_sendString("Error Response OK missing\n");
 					apState = ACCESS_POINT_RECEIVE;
 					break;
+				case ERR_RESP:
+					uart1_sendString("Error Response\n");
+					apState = ACCESS_POINT_RECEIVE;
+					break;
 				case ERR_TIMEOUT:
 					uart1_sendString("Error Timeout\n");
 					apState = ACCESS_POINT_RECEIVE;
 					break;
 				default:
+					uart1_sendString("Unknown Error\n");
 					apState = ACCESS_POINT_RST1;
 					break;
 			}
 			break;
 		case ACCESS_POINT_SEND_CLOSE2:
+			/*uart1_sendString("Close2\n");
 			switch(sendCIPCLOSE(id,1000)){
+				case ERR_OK:
+					apState = ACCESS_POINT_IDLE;
+					break;
+				case ERR_RESP_CMD:
+					uart1_sendString("Error Response Command\n");
+					apState = ACCESS_POINT_IDLE;
+					break;
+				case ERR_RESP_OK:
+					uart1_sendString("Error Response OK missing\n");
+					apState = ACCESS_POINT_IDLE;
+					break;
+				case ERR_RESP:
+					uart1_sendString("Error Response\n");
+					apState = ACCESS_POINT_IDLE;
+					break;
+				case ERR_TIMEOUT:
+					uart1_sendString("Error Timeout\n");
+					apState = ACCESS_POINT_IDLE;
+					break;
+				default:
+					uart1_sendString("Unknown Error\n");
+					apState = ACCESS_POINT_IDLE;
+					break;
+			}*/
+			// I don't know why but it works
+			switch(sendCIPSERVER(0, 80, 100)){
 				case ERR_OK:
 					apState = ACCESS_POINT_IDLE;
 					break;
@@ -904,7 +945,7 @@ uint8_t sendCIPCLOSE(uint8_t id, uint32_t timeout){
 	// CHECK RESPONSE
 	if ( strcmp(recString, closedString) != 0 ) {
 		uart1_sendString("ERR_RESP\r\n");
-		return ERR_RESP_CMD;
+		return ERR_RESP;
 	}
 	// WAIT FOR RESPONSE
 	while(receiveCmd(recString) && esp8266_Timeout);
