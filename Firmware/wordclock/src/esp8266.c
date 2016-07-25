@@ -89,6 +89,12 @@ typedef enum {
 	ACCESS_POINT_IDLE,
 }AP_STATE;
 
+const char* website1 = "<!DOCTYPE html><html><body><h1>Devcon Wordclock</h1>"
+	"<p>Konfiguration:</p><br><form action=\"\" method=\"POST\">SSID:"
+	"<input type=\"text\" name=\"ssid\" value=\"";
+const char* website2 ="\"><br><br>PWD: <input type=\"text\" name=\"pwd\" value=\"";
+const char* website3 = "\"><br><br><input type=\"submit\" value=\"Submit\"></form></body></html>";
+
 uint8_t esp8266_requestTime(void){
 
 	static NTP_STATE ntpState = NTP_STATE_RST1;
@@ -447,6 +453,7 @@ uint8_t esp8266_accessPoint(void){
 						else{
 							strcpy(config.ssid, ssid);
 							strcpy(config.pw, pw);
+							config_write();
 							apState = ACCESS_POINT_SEND_ACK;
 						}
 					}
@@ -466,7 +473,11 @@ uint8_t esp8266_accessPoint(void){
 			}
 			break;
 		case ACCESS_POINT_SEND_FORMULAR:
-			switch(sendCIPSEND(id,"<!DOCTYPE html><html><body><h1>Devcon Wordclock</h1><p>Konfiguration:</p><br><form action=\"\" method=\"POST\">SSID: <input type=\"text\" name=\"ssid\"><br><br>PWD: <input type=\"text\" name=\"pwd\"><br><br><input type=\"submit\" value=\"Submit\"></form></body></html>", 10000)){
+			sendCIPSEND(id,(char*)website1, 10000);
+			sendCIPSEND(id,config.ssid, 10000);
+			sendCIPSEND(id,(char*)website2, 10000);
+			sendCIPSEND(id,config.pw, 10000);
+			switch(sendCIPSEND(id,(char*)website3, 10000)){
 				case ERR_OK:
 					apState = ACCESS_POINT_SEND_CLOSE;
 					break;

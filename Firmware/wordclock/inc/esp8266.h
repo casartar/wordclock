@@ -4,6 +4,7 @@
  *  Created on: 22.05.2016
  *      Author: Carsten
  */
+#include <inttypes.h>
 
 #ifndef ESP8266_H_
 #define ESP8266_H_

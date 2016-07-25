@@ -12,6 +12,11 @@ void queue_init (QUEUE* q){
 
 	q->head = 0;
 	q->tail  = 0;
+
+	for (uint16_t index = 0; index < MAX_QUEUE_SIZE; index++){
+		q->queue[index] = 0;
+	}
+
 }
 
 uint8_t queue_empty (QUEUE* q){
