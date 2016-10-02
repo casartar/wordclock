@@ -46,7 +46,7 @@ int main(void)
 	// Delete garbage from WLAN module
 	queue_init(&uart2RecQueue);
 
-	Word_Clock_Init(0,255,0,255);
+	Word_Clock_Init(config.colorRed, config.colorGreen, config.colorBlue, 255);
 	Word_Clock_Set_Color(&clock_word_dict.min_0,  255,  0,  0,255);
 	Word_Clock_Set_Color(&clock_word_dict.min_5,  127,127,127,255);
 	Word_Clock_Set_Color(&clock_word_dict.min_10,   0,  0,255,255);
@@ -55,8 +55,6 @@ int main(void)
 	Word_Clock_Set_Color(&clock_word_dict.min_30, 127,  0,127,255);
 	Word_Clock_Set_Color(&clock_word_dict.min_45,   0,200,200,255);
 
-	uint8_t dim = 50;
-
 	while(1){
 
 		cmdHandler();
@@ -64,7 +62,7 @@ int main(void)
 		if (updateInterval == 0){
 			updateInterval = 1000;
 			LED_Matrix_Clear(0,0,0);
-			Word_Clock_Draw(ctime.hours, ctime.minutes, 255);
+			Word_Clock_Draw(ctime.hours, ctime.minutes, config.brightness);
 			WS2812_Update();
 		}
 	}

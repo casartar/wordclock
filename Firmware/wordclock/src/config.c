@@ -21,7 +21,7 @@ void config_setDefault(void){
 	strcpy (config.ssid,"Elektron.B");
 	strcpy (config.pw, "www.google.de");
 	config.utcOffset = 1;
-	config.brightness = 255;
+	config.brightness = 50;
 	config.colorRed = 255;
 	config.colorGreen = 0;
 	config.colorBlue = 0;
