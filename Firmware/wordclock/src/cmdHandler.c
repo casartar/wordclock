@@ -40,6 +40,7 @@ void cmdHandler(void)
 		case '\0':
 			response = 1;
 			break;
+
 		case '?':
 			if (uart1RecBuf[1] == '\0'){
 				sprintf(outputBuffer, "SSID:             %s\r\n", config.ssid);
@@ -61,6 +62,7 @@ void cmdHandler(void)
 				response = 1;
 			}
 			break;
+
 		case 'S':
 		case 's':
 			if ((uart1RecBuf[1] == 'S' || uart1RecBuf[1] == 's')
@@ -91,6 +93,7 @@ void cmdHandler(void)
 				saveConfig = 1;
 			}
 			break;
+			/*
 		case 'T':
 		case 't':
 			if (uart1RecBuf[1] != '='){
@@ -110,16 +113,15 @@ void cmdHandler(void)
 			else break;
 			response = 1;
 			break;
+			*/
 		case 'O':
 		case 'o':
 			if (uart1RecBuf[1] != '='){
 				// Invalid command
 				break;
 			}
-			if (sscanf(&uart1RecBuf[2],"%3hhd", (char*)&tmpOffset) != 1){
-				// Parsing error
-				break;
-			}
+			tmpOffset = strtol(&uart1RecBuf[2], &ptr, 10);
+			if (tmpBrightness == 0 && uart1RecBuf[2] != '0') break;
 			if (tmpOffset < 13 && tmpOffset > -13) config.utcOffset = tmpOffset;
 			else break;
 			response = 1;

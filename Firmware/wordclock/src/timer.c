@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 
-volatile uint32_t tetrisDelay = 0;
+volatile uint32_t updateInterval = 0;
 volatile uint32_t esp8266_Timeout = 0;
 struct time ctime;
 
@@ -27,7 +27,7 @@ void SysTick_Handler (void) {
 
 	clock_Counter();
 	led_Handler();
-	if (tetrisDelay) tetrisDelay--;
+	if (updateInterval) updateInterval--;
 	if (esp8266_Timeout) esp8266_Timeout--;
 
 }
@@ -40,7 +40,7 @@ void clock_Counter(void){
 		// generate blink pulse
 		ctime.blink_2Hz = !ctime.blink_2Hz;
 	}
-	if ( millisecondCounter >= 10) {
+	if ( millisecondCounter >= 1000) {
 		// generate blink pulse
 		ctime.blink_1Hz = !ctime.blink_1Hz;
 		ctime.blink_2Hz = !ctime.blink_2Hz;
