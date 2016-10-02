@@ -32,13 +32,17 @@ int main(void)
 	uart2_init();
 	uart1_init();	// Debug Interface
 	uart1_sendString("Wordclock template \r\n");
-	config_setDefault();
+
 
 	config_init();
 
 	if (config_read()){
+		config_setDefault();
 		config_write();
 	}
+
+	config_setDefault();
+	config_write();
 
 	while(ctime.seconds < 2);
 	queue_init(&uart2RecQueue);
@@ -55,16 +59,30 @@ int main(void)
 	Word_Clock_Set_Color(&clock_word_dict.min_30, 127,  0,127,255);
 	Word_Clock_Set_Color(&clock_word_dict.min_45,   0,200,200,255);
 
-	while(1){
+	uint8_t dim = 50;
 
-		Word_Clock_Draw(ctime.hours, ctime.minutes, 255);
+	while(1){
+		cmdHandler();
+		esp8266_requestTime();
+
+		if(tetrisDelay == 0){
+			tetrisDelay = 1000;
+			LED_Matrix_Clear(50,50,50);
+			LED_Matrix_Draw_Pix(0,0,255,0,0,255);
+			LED_Matrix_Draw_Pix(10,0,0,255,0,255);
+			LED_Matrix_Draw_Pix(0,9,0,255,0,255);
+			LED_Matrix_Draw_Pix(10,9,0,255,0,255);
 /*
-		LED_Matrix_Draw_Pix(0,0, 0, 255, 0, 255);
-		LED_Matrix_Draw_Pix(10,0, 255, 0, 0, 255);
-		LED_Matrix_Draw_Pix(0,9, 255, 0, 0, 255);
-		LED_Matrix_Draw_Pix(10,9, 255, 0, 0, 255);
+			if(ctime.minutes != 0 && ctime.hours != 0){
+				LED_Matrix_Clear(0,0,0);
+				Word_Clock_Draw(ctime.hours+1, ctime.minutes, dim);
+			}else{
+				LED_Matrix_Clear(50,0,0);
+			}
 */
-		WS2812_Update();
+
+			WS2812_Update();
+		}
 	}
 }
 

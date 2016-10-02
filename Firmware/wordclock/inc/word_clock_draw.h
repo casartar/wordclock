@@ -33,6 +33,7 @@ typedef struct{
 	clock_word_t min_30;
 	clock_word_t min_45;
 	clock_word_t h_1;
+	clock_word_t h_1s;
 	clock_word_t h_2;
 	clock_word_t h_3;
 	clock_word_t h_4;

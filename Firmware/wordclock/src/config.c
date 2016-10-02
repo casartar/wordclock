@@ -19,8 +19,8 @@ void config_setDefault(void){
 	config.summertimeFlag = 0;
 	config.gmtOffsetSummertime = 2;
 	config.gmtOffsetWintertime = 1;
-	strcpy (config.ssid,"SSID");
-	strcpy (config.pw, "Passwort");
+	strcpy (config.ssid,"Elektron.B");
+	strcpy (config.pw, "www.google.de");
 }
 
 uint8_t config_init(void){

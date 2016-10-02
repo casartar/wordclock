@@ -40,7 +40,7 @@ void clock_Counter(void){
 		// generate blink pulse
 		ctime.blink_2Hz = !ctime.blink_2Hz;
 	}
-	if ( millisecondCounter >= 10) {
+	if ( millisecondCounter >= 1000) {
 		// generate blink pulse
 		ctime.blink_1Hz = !ctime.blink_1Hz;
 		ctime.blink_2Hz = !ctime.blink_2Hz;

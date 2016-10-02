@@ -7,7 +7,7 @@
 
 #ifndef WORD_CLOCK_MASK_H
 #define WORD_CLOCK_MASK_H
-
+	//										x y len
 	#define WORD_CLOCK_MASK_IT				0,0,2
 	#define WORD_CLOCK_MASK_IS				3,0,3
 	
@@ -22,7 +22,8 @@
 	#define WORD_CLOCK_MASK_MIN_30			0,4,4
 	#define WORD_CLOCK_MASK_MIN_45 			0,2,11
 	
-	#define WORD_CLOCK_MASK_H_1				2,5,4
+	#define WORD_CLOCK_MASK_H_1				2,5,3
+	#define WORD_CLOCK_MASK_H_1s			2,5,4
 	#define WORD_CLOCK_MASK_H_2				0,5,4
 	#define WORD_CLOCK_MASK_H_3				1,6,4
 	#define WORD_CLOCK_MASK_H_4				7,7,4

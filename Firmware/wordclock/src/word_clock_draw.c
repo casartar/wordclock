@@ -36,6 +36,7 @@ void Word_Clock_Init(uint8_t r, uint8_t g, uint8_t b, uint8_t alpha){
 	Word_Clock_Init_Helper(&clock_word_dict.min_30, WORD_CLOCK_MASK_MIN_30	, r, g, b, alpha);
 	Word_Clock_Init_Helper(&clock_word_dict.min_45, WORD_CLOCK_MASK_MIN_45	, r, g, b, alpha);
 	Word_Clock_Init_Helper(&clock_word_dict.h_1, 	WORD_CLOCK_MASK_H_1		, r, g, b, alpha);
+	Word_Clock_Init_Helper(&clock_word_dict.h_1s, 	WORD_CLOCK_MASK_H_1s	, r, g, b, alpha);
 	Word_Clock_Init_Helper(&clock_word_dict.h_2, 	WORD_CLOCK_MASK_H_2		, r, g, b, alpha);
 	Word_Clock_Init_Helper(&clock_word_dict.h_3, 	WORD_CLOCK_MASK_H_3		, r, g, b, alpha);
 	Word_Clock_Init_Helper(&clock_word_dict.h_4, 	WORD_CLOCK_MASK_H_4		, r, g, b, alpha);
@@ -60,6 +61,10 @@ static void Word_Clock_Draw_Helper(clock_word_t *clock_word, uint8_t brightness)
 
 void Word_Clock_Draw(uint8_t h, uint8_t m, uint8_t brightness){
 	uint8_t offset_h = 0;
+
+	if(h > 12){
+		h -=12;
+	}
 
 	Word_Clock_Draw_Helper(&clock_word_dict.it,  brightness);
 	Word_Clock_Draw_Helper(&clock_word_dict.is,  brightness);
@@ -123,7 +128,11 @@ void Word_Clock_Draw(uint8_t h, uint8_t m, uint8_t brightness){
 
 	switch(h+offset_h){
 		case 1:
-			Word_Clock_Draw_Helper(&clock_word_dict.h_1,  brightness);
+			if(m < 5){
+				Word_Clock_Draw_Helper(&clock_word_dict.h_1,  brightness);
+			}else{
+				Word_Clock_Draw_Helper(&clock_word_dict.h_1s,  brightness);
+			}
 			break;
 		case 2:
 			Word_Clock_Draw_Helper(&clock_word_dict.h_2,  brightness);
