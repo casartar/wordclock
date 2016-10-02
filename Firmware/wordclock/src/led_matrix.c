@@ -37,23 +37,23 @@ void LED_Matrix_Draw_Pix(uint8_t x_pos, uint8_t y_pos, uint8_t r, uint8_t g, uin
 
 	//ungerade Reihe
 	if(y_pos & 1){
-		cal_pos = matrix_width * y_pos + x_pos;
+		cal_pos = matrix_width * y_pos + (matrix_width - x_pos - 1);
 	}
 	//gerade Reihe
 	else{
-		cal_pos = matrix_width * y_pos + (matrix_width - x_pos - 1);
+		cal_pos = matrix_width * y_pos + x_pos;
 	}
 
-	if(alpha < 256){
+	if(alpha < 255){
 		//get actual pixel color
 		buffer_r(cal_pos, &tmp_r, &tmp_g, &tmp_b);
 
 		//blend with new color
 		inv_alpha = 256 - alpha;
 
-		r = (uint8_t)((alpha * r + inv_alpha * tmp_r) >> 8);
-		g = (uint8_t)((alpha * g + inv_alpha * tmp_g) >> 8);
-		b = (uint8_t)((alpha * b + inv_alpha * tmp_b) >> 8);
+		r = (uint8_t)(((uint16_t) alpha * r + (uint16_t) inv_alpha * tmp_r) >> 8);
+		g = (uint8_t)(((uint16_t) alpha * g + (uint16_t) inv_alpha * tmp_g) >> 8);
+		b = (uint8_t)(((uint16_t) alpha * b + (uint16_t) inv_alpha * tmp_b) >> 8);
 	}
 
 	buffer_w(cal_pos, r, g, b);
@@ -385,7 +385,7 @@ void LED_Matrix_Demo_1(void){
 
 		switch(demo_select){
 		case 0:
-			delay_set = 1000000;
+			delay_set = 500000;
 			switch(state++){
 				//Clear Buffer			 R G B a
 				case 0: LED_Matrix_Clear(0,0,0);					break;
@@ -407,7 +407,7 @@ void LED_Matrix_Demo_1(void){
 
 
 		case 1:
-			delay_set = 50000;
+			delay_set = 25000;
 			LED_Matrix_Clear(128-state/2,128-state/2,128-state/2);	//clear with wihte
 
 			LED_Matrix_Draw_Pix(0,0,255,0,0,state);
@@ -427,7 +427,7 @@ void LED_Matrix_Demo_1(void){
 		break;
 
 		case 2:
-			delay_set = 1500000;
+			delay_set = 750000;
 			switch(state++){
 				//Clear Buffer			 R G B
 				case 0: LED_Matrix_Clear(75,0,0);					break;
@@ -454,7 +454,7 @@ void LED_Matrix_Demo_1(void){
 
 
 			case 3:
-				delay_set = 1500000;
+				delay_set = 750000;
 				switch(state++){
 					//Clear Buffer			 R G B
 					case 0: LED_Matrix_Clear(0,0,25);					break;
@@ -480,7 +480,7 @@ void LED_Matrix_Demo_1(void){
 				break;
 
 				case 4:
-					delay_set = 1500000;
+					delay_set = 750000;
 					switch(state++){
 						//Clear Buffer			 R G B
 						case 0: LED_Matrix_Clear(0,0,0);					break;
@@ -519,12 +519,12 @@ void LED_Matrix_Demo_1(void){
 						default:  											break;
 					}
 					if(state >= 10){
-						delay_set = 1000000;
+						delay_set = 500000;
 					}
 				break;
 
 				case 5:
-				delay_set = 50000;
+				delay_set = 25000;
 				switch(state){
 					//Clear Buffer			 R G B
 					case 0: LED_Matrix_Clear(0,0,0);
