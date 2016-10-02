@@ -13,11 +13,15 @@
 
 struct _config{
  uint16_t header;
- int8_t  gmtOffsetSummertime;
- int8_t  gmtOffsetWintertime;
  char    ssid[SSID_MAX_LEN];
  char    pw[PW_MAX_LEN];
+ int8_t	 utcOffset;
+ uint8_t brightness;
+ uint8_t colorRed;
+ uint8_t colorGreen;
+ uint8_t colorBlue;
  uint8_t summertimeFlag;
+
 }config;
 
 void config_setDefault(void);

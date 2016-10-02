@@ -31,11 +31,12 @@ int main(void)
 	uart2_init();
 	uart1_init();	// Debug Interface
 	uart1_sendString("Wordclock template \r\n");
-	config_setDefault();
+
 
 	config_init();
 
 	if (config_read()){
+		config_setDefault();
 		config_write();
 	}
 

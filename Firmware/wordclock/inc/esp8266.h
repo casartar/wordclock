@@ -9,8 +9,8 @@
 #ifndef ESP8266_H_
 #define ESP8266_H_
 
-#define SSID_MAX_LEN   65
-#define PW_MAX_LEN     65
+#define SSID_MAX_LEN   32
+#define PW_MAX_LEN     63
 
 //void esp8266_init(void);
 uint8_t esp8266_accessPoint(void);

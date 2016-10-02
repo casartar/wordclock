@@ -99,8 +99,6 @@ uint8_t esp8266_requestTime(void){
 
 	static NTP_STATE ntpState = NTP_STATE_RST1;
 
-	uint8_t tmpGmtOffset = 0;
-
 	switch(ntpState){
 		case NTP_STATE_RST1:
 			switch(sendRST(5000)){
@@ -191,9 +189,8 @@ uint8_t esp8266_requestTime(void){
 			}
 			break;
 		case NTP_STATE_CIPNTP_CONF:
-			if (config.summertimeFlag) tmpGmtOffset = config.gmtOffsetSummertime;
-			else tmpGmtOffset = config.gmtOffsetWintertime;
-			switch(sendCIPNTPconf(tmpGmtOffset, 8000)){
+
+			switch(sendCIPNTPconf(config.utcOffset, 8000)){
 				case ERR_OK:
 					ntpState = NTP_STATE_CIPNTP_GET;
 					break;
@@ -217,12 +214,7 @@ uint8_t esp8266_requestTime(void){
 		case NTP_STATE_CIPNTP_GET:
 			switch(sendCIPNTPget(1000)){
 				case ERR_OK:
-					if(ctime.month > 3 && ctime.month < 10) config.summertimeFlag = 1;
-					else if (ctime.month == 3 && ctime.day < 27) config.summertimeFlag = 1;
-					else if (ctime.month == 10 && ctime.day < 30) config.summertimeFlag = 1;
-					else if (ctime.month == 3 && ctime.day == 27 && ctime.hours > 2) config.summertimeFlag = 1;
-					else if (ctime.month == 10 && ctime.day == 30 && ctime.hours < 2) config.summertimeFlag = 1;
-					else config.summertimeFlag = 0;
+
 					ntpState = NTP_STATE_IDLE;
 					break;
 				case ERR_TIMEOUT:
@@ -1066,6 +1058,17 @@ uint8_t sendCIPNTPget(uint32_t timeout){
 		ctime.month = atoi(&recString[15]);
 		ctime.day = atoi(&recString[18]);
 		ctime.year = atoi(&recString[21]);
+
+		if(ctime.month > 3 && ctime.month < 10) config.summertimeFlag = 1;
+		else if (ctime.month == 3 && ctime.day > 27) config.summertimeFlag = 1;
+		else if (ctime.month == 10 && ctime.day < 30) config.summertimeFlag = 1;
+		else if (ctime.month == 3 && ctime.day == 27 && ctime.hours > 2) config.summertimeFlag = 1;
+		else if (ctime.month == 10 && ctime.day == 30 && ctime.hours < 2) config.summertimeFlag = 1;
+		else config.summertimeFlag = 0;
+
+		if(config.summertimeFlag){
+			ctime.hours = ctime.hours + 1;
+		}
 
 		sprintf(Buffer,"H: %u, M: %u, S: %u, D: %u, M: %u, Y: %u\n",
 				ctime.hours,ctime.minutes,ctime.seconds,ctime.day,ctime.month,ctime.year);
