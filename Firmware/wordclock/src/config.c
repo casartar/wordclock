@@ -16,11 +16,15 @@ uint16_t VirtAddVarTab[NB_OF_VAR];
 void config_setDefault(void){
 
 	config.header = DEFAULT_HEADER;
+
 	config.summertimeFlag = 0;
-	config.gmtOffsetSummertime = 2;
-	config.gmtOffsetWintertime = 1;
 	strcpy (config.ssid,"Elektron.B");
 	strcpy (config.pw, "www.google.de");
+	config.utcOffset = 1;
+	config.brightness = 255;
+	config.colorRed = 255;
+	config.colorGreen = 0;
+	config.colorBlue = 0;
 }
 
 uint8_t config_init(void){

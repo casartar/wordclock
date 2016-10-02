@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 
-extern volatile uint32_t tetrisDelay;
+extern volatile uint32_t updateInterval;
 extern volatile uint32_t esp8266_Timeout;
 
 void sysTick_init(void);
