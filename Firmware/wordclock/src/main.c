@@ -34,12 +34,16 @@ int main(void)
 	uart1_init();	// Debug Interface and command Handler interface
 	uart1_sendString("Wordclock template \r\n");
 
-	config_init();
+	// display red while initializing
+	LED_Matrix_Clear(255,0,0);
+	WS2812_Update();
 
+	config_init();
 	if (config_read()){
 		config_setDefault();
 		config_write();
 	}
+
 
 	// Wait for esp8266 bootup
 	while(ctime.seconds < 2);
@@ -47,24 +51,25 @@ int main(void)
 	queue_init(&uart2RecQueue);
 
 	Word_Clock_Init(config.colorRed, config.colorGreen, config.colorBlue, 255);
-	Word_Clock_Set_Color(&clock_word_dict.min_0,  255,  0,  0,255);
-	Word_Clock_Set_Color(&clock_word_dict.min_5,  127,127,127,255);
-	Word_Clock_Set_Color(&clock_word_dict.min_10,   0,  0,255,255);
-	Word_Clock_Set_Color(&clock_word_dict.min_15, 127,127,  0,255);
-	Word_Clock_Set_Color(&clock_word_dict.min_20,   0,127,127,255);
-	Word_Clock_Set_Color(&clock_word_dict.min_30, 127,  0,127,255);
-	Word_Clock_Set_Color(&clock_word_dict.min_45,   0,200,200,255);
+
 
 	while(1){
 
 		cmdHandler();
 		esp8266_requestTime();
+
 		if (updateInterval == 0){
 			updateInterval = 1000;
 			LED_Matrix_Clear(0,0,0);
-			Word_Clock_Draw(ctime.hours, ctime.minutes, config.brightness);
-			WS2812_Update();
+			// if day == 0 , there is no valid timestamp from ntp
+			if(ctime.day != 0){
+				Word_Clock_Draw(ctime.hours, ctime.minutes, config.brightness);
+				WS2812_Update();
+			}
+
+
 		}
+
 	}
 }
 

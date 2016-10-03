@@ -22,14 +22,19 @@ void config_setDefault(void){
 	strcpy (config.pw, "www.google.de");
 	config.utcOffset = 1;
 	config.brightness = 50;
-	config.colorRed = 255;
-	config.colorGreen = 0;
+	config.colorRed = 0;
+	config.colorGreen = 255;
 	config.colorBlue = 0;
+	for (uint8_t index= 0; index < sizeof(config.wordColor); index++){
+		config.wordColor[index].r = config.colorRed;
+		config.wordColor[index].g = config.colorGreen;
+		config.wordColor[index].b = config.colorBlue;
+	}
 }
 
 uint8_t config_init(void){
 
-	for (uint8_t index = 0; index < NB_OF_VAR; index++){
+	for (uint16_t index = 0; index < sizeof(config); index++){
 		VirtAddVarTab[index] = index;
 	}
 	FLASH_Unlock();
@@ -42,12 +47,11 @@ uint8_t config_init(void){
 
 uint8_t config_read(void){
 
-	uint16_t tmpHeader = 0;
 	uint8_t* ptr;
 	uint16_t tmpData;
 
 	ptr = (uint8_t*)&config;
-	for (uint8_t index = 0; index < sizeof(config); index++){
+	for (uint16_t index = 0; index < sizeof(config); index++){
 		EE_ReadVariable(index,&tmpData);
 		*ptr++ = (uint8_t)tmpData;
 	}
@@ -67,7 +71,7 @@ uint8_t config_write(void){
 	uint8_t* ptr;
 
 	ptr = (uint8_t*)&config;
-	for (uint8_t index = 0; index < sizeof(config); index++){
+	for (uint16_t index = 0; index < sizeof(config); index++){
 		EE_WriteVariable(index,*ptr++);
 	}
 	return 0;

@@ -10,6 +10,7 @@
 
 #include "esp8266.h"
 #include <inttypes.h>
+#include "led_matrix.h"
 
 struct _config{
  uint16_t header;
@@ -21,8 +22,12 @@ struct _config{
  uint8_t colorGreen;
  uint8_t colorBlue;
  uint8_t summertimeFlag;
+ rgb_t wordColor[24];
+
 
 }config;
+
+
 
 void config_setDefault(void);
 uint8_t config_init(void);

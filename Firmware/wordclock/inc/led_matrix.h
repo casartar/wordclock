@@ -12,6 +12,13 @@
 #include "ws2812.h"
 #include "stm32f0xx.h"
 
+typedef struct{
+
+	uint8_t r;
+	uint8_t g;
+	uint8_t b;
+}rgb_t;
+
 void LED_Matrix_GFX_Init( void (*func_ptr_w)(uint16_t , uint8_t, uint8_t, uint8_t),  void (*func_ptr_r)(uint16_t , uint8_t*, uint8_t*, uint8_t*), uint8_t h, uint8_t w);
 
 void LED_Matrix_Draw_Pix(uint8_t x_pos, uint8_t y_pos, uint8_t r, uint8_t g, uint8_t b, uint8_t alpha);
