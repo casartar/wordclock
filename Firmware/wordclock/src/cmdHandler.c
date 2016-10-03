@@ -45,10 +45,15 @@ void cmdHandler(void)
 
 		case '?':
 			if (uart1RecBuf[1] == '\0'){
-				sprintf(outputBuffer, "SSID:             %s\r\n", config.ssid);
+
+				uart1_sendString("###############################################################\r\n");
+				uart1_sendString("                       WordClock Config: \r\n");
+				uart1_sendString("---------------------------------------------------------------\r\n");
+
+				sprintf(outputBuffer, "WLAN-SSID:        %s\r\n", config.ssid);
 				uart1_sendString(outputBuffer);
 
-				sprintf(outputBuffer, "Password:         %s\r\n", config.pw);
+				sprintf(outputBuffer, "WLAN-Password:    %s\r\n", config.pw);
 				uart1_sendString(outputBuffer);
 
 				sprintf(outputBuffer, "UTC Offset:       %d\r\n", config.utcOffset);
@@ -61,30 +66,76 @@ void cmdHandler(void)
 						config.colorRed, config.colorGreen, config.colorBlue);
 				uart1_sendString(outputBuffer);
 
-				uart1_sendString("w0 = es\r\n");
-				uart1_sendString("w1 = ist\r\n");
-				uart1_sendString("w2 = vor\r\n");
-				uart1_sendString("w3 = nach\r\n");
-				uart1_sendString("w4 = Uhr\r\n");
-				uart1_sendString("w5 = fuenf\r\n");
-				uart1_sendString("w6 = zehn\r\n");
-				uart1_sendString("w7 = viertel\r\n");
-				uart1_sendString("w8 = zwanzig\r\n");
-				uart1_sendString("w9 = halb\r\n");
-				uart1_sendString("w10 = dreiviertel\r\n");
-				uart1_sendString("w11 = ein\r\n");
-				uart1_sendString("w12 = eins\r\n");
-				uart1_sendString("w13 = zwei\r\n");
-				uart1_sendString("w14 = drei\r\n");
-				uart1_sendString("w15 = vier\r\n");
-				uart1_sendString("w16 = fuenf\r\n");
-				uart1_sendString("w17 = sechs\r\n");
-				uart1_sendString("w18 = sieben\r\n");
-				uart1_sendString("w19 = acht\r\n");
-				uart1_sendString("w20 = neun\r\n");
-				uart1_sendString("w21 = zehn\r\n");
-				uart1_sendString("w22 = elf\r\n");
-				uart1_sendString("w23 = zwoelf\r\n");
+				uart1_sendString("---------------------------------------------------------------\r\n\r\n");
+				uart1_sendString("         Word Colors: (CMD: w=Number,red,green,blue) \r\n\r\n");
+
+				sprintf(outputBuffer, " 0 <Es>          %03u,%03u,%03u  |  1 <ist>     %03u,%03u,%03u \r\n",
+						config.wordColor[0].r, config.wordColor[0].g, config.wordColor[0].b,
+						config.wordColor[1].r, config.wordColor[1].g, config.wordColor[1].b);
+				uart1_sendString(outputBuffer);
+
+				sprintf(outputBuffer, " 2 <vor>         %03u,%03u,%03u  |  3 <nach>    %03u,%03u,%03u \r\n",
+						config.wordColor[2].r, config.wordColor[2].g, config.wordColor[2].b,
+						config.wordColor[3].r, config.wordColor[3].g, config.wordColor[3].b);
+				uart1_sendString(outputBuffer);
+
+				sprintf(outputBuffer, " 4 <Uhr>         %03u,%03u,%03u  |  5 <fuenf>   %03u,%03u,%03u \r\n",
+						config.wordColor[4].r, config.wordColor[4].g, config.wordColor[4].b,
+						config.wordColor[5].r, config.wordColor[5].g, config.wordColor[5].b);
+				uart1_sendString(outputBuffer);
+
+
+				sprintf(outputBuffer, " 6 <zehn>        %03u,%03u,%03u  |  7 <viertel> %03u,%03u,%03u\r\n",
+						config.wordColor[6].r, config.wordColor[6].g, config.wordColor[6].b,
+						config.wordColor[7].r, config.wordColor[7].g, config.wordColor[7].b);
+				uart1_sendString(outputBuffer);
+
+
+				sprintf(outputBuffer, " 8 <zwanzig>     %03u,%03u,%03u  |  9 <halb>    %03u,%03u,%03u\r\n",
+						config.wordColor[8].r, config.wordColor[8].g, config.wordColor[8].b,
+						config.wordColor[9].r, config.wordColor[9].g, config.wordColor[9].b);
+				uart1_sendString(outputBuffer);
+
+
+				sprintf(outputBuffer, "10 <dreiviertel> %03u,%03u,%03u  | 11 <ein>     %03u,%03u,%03u\r\n",
+						config.wordColor[10].r, config.wordColor[10].g, config.wordColor[10].b,
+						config.wordColor[11].r, config.wordColor[11].g, config.wordColor[11].b);
+				uart1_sendString(outputBuffer);
+
+
+				sprintf(outputBuffer, "12 <eins>        %03u,%03u,%03u  | 13 <zwei>    %03u,%03u,%03u\r\n",
+						config.wordColor[12].r, config.wordColor[12].g, config.wordColor[12].b,
+						config.wordColor[13].r, config.wordColor[13].g, config.wordColor[13].b);
+				uart1_sendString(outputBuffer);
+
+				sprintf(outputBuffer, "14 <drei>        %03u,%03u,%03u  | 15 <vier>    %03u,%03u,%03u\r\n",
+						config.wordColor[14].r, config.wordColor[14].g, config.wordColor[14].b,
+						config.wordColor[15].r, config.wordColor[15].g, config.wordColor[15].b);
+				uart1_sendString(outputBuffer);
+
+
+				sprintf(outputBuffer, "16 <fuenf>       %03u,%03u,%03u  | 17 <sechs>   %03u,%03u,%03u\r\n",
+						config.wordColor[16].r, config.wordColor[16].g, config.wordColor[16].b,
+						config.wordColor[17].r, config.wordColor[17].g, config.wordColor[17].b);
+				uart1_sendString(outputBuffer);
+
+
+				sprintf(outputBuffer, "18 <sieben>      %03u,%03u,%03u  | 19 <acht>    %03u,%03u,%03u\r\n",
+						config.wordColor[18].r, config.wordColor[18].g, config.wordColor[18].b,
+						config.wordColor[19].r, config.wordColor[19].g, config.wordColor[19].b);
+				uart1_sendString(outputBuffer);
+
+
+				sprintf(outputBuffer, "20 <neun>        %03u,%03u,%03u  | 21 <zehn>    %03u,%03u,%03u\r\n",
+						config.wordColor[20].r, config.wordColor[20].g, config.wordColor[20].b,
+						config.wordColor[21].r, config.wordColor[21].g, config.wordColor[21].b);
+				uart1_sendString(outputBuffer);
+
+				sprintf(outputBuffer, "22 <elf>         %03u,%03u,%03u  | 23 <zwoelf>  %03u,%03u,%03u\r\n",
+						config.wordColor[22].r, config.wordColor[22].g, config.wordColor[22].b,
+						config.wordColor[23].r, config.wordColor[23].g, config.wordColor[23].b);
+				uart1_sendString(outputBuffer);
+				uart1_sendString("_______________________________________________________________\r\n");
 				response = 1;
 			}
 			break;
