@@ -8283,7 +8283,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical"
+		(property "Footprint" "lib:HDR-SMD_3P-P2.54-H-M_KH-2.54PH-1X3P-L13.5-WT"
 			(at 190.5 332.74 0)
 			(effects
 				(font
@@ -8748,7 +8748,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 254 368.3 0)
+		(at 246.38 368.3 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -8757,7 +8757,7 @@
 		(fields_autoplaced yes)
 		(uuid "19713887-9166-4f9a-b8b4-09a6b60fc43d")
 		(property "Reference" "H4"
-			(at 256.54 367.0299 0)
+			(at 248.92 367.0299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8766,7 +8766,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 256.54 369.5699 0)
+			(at 248.92 369.5699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8775,7 +8775,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 254 368.3 0)
+			(at 246.38 368.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8784,7 +8784,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 254 368.3 0)
+			(at 246.38 368.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8793,7 +8793,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 254 368.3 0)
+			(at 246.38 368.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11690,6 +11690,70 @@
 			(project "LED-PCB"
 				(path "/51a4082d-670e-42dd-b3e0-18afcebc0bf7"
 					(reference "#PWR067")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 266.7 368.3 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2d55aed6-3e3b-4041-ac45-3c046d88ff03")
+		(property "Reference" "H8"
+			(at 269.24 367.0299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 269.24 369.5699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+			(at 266.7 368.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 266.7 368.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 266.7 368.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "LED-PCB"
+				(path "/51a4082d-670e-42dd-b3e0-18afcebc0bf7"
+					(reference "H8")
 					(unit 1)
 				)
 			)
@@ -21007,7 +21071,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 254 349.25 0)
+		(at 246.38 349.25 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -21016,7 +21080,7 @@
 		(fields_autoplaced yes)
 		(uuid "7938a97c-7b2c-4245-bd94-74e7e44adb04")
 		(property "Reference" "H1"
-			(at 256.54 347.9799 0)
+			(at 248.92 347.9799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21025,7 +21089,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 256.54 350.5199 0)
+			(at 248.92 350.5199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21034,7 +21098,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 254 349.25 0)
+			(at 246.38 349.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21043,7 +21107,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 254 349.25 0)
+			(at 246.38 349.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21052,7 +21116,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 254 349.25 0)
+			(at 246.38 349.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24810,7 +24874,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 254 355.6 0)
+		(at 246.38 355.6 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -24819,7 +24883,7 @@
 		(fields_autoplaced yes)
 		(uuid "9836d884-2736-4fe2-a3ec-2859506120b7")
 		(property "Reference" "H2"
-			(at 256.54 354.3299 0)
+			(at 248.92 354.3299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24828,7 +24892,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 256.54 356.8699 0)
+			(at 248.92 356.8699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24837,7 +24901,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 254 355.6 0)
+			(at 246.38 355.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24846,7 +24910,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 254 355.6 0)
+			(at 246.38 355.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24855,7 +24919,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 254 355.6 0)
+			(at 246.38 355.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -25480,6 +25544,70 @@
 			(project "LED-PCB"
 				(path "/51a4082d-670e-42dd-b3e0-18afcebc0bf7"
 					(reference "#PWR0116")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 266.7 355.6 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9c37ce4d-cba3-44df-9216-ff3b29296c33")
+		(property "Reference" "H6"
+			(at 269.24 354.3299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 269.24 356.8699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+			(at 266.7 355.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 266.7 355.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 266.7 355.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "LED-PCB"
+				(path "/51a4082d-670e-42dd-b3e0-18afcebc0bf7"
+					(reference "H6")
 					(unit 1)
 				)
 			)
@@ -26260,6 +26388,70 @@
 			(project "LED-PCB"
 				(path "/51a4082d-670e-42dd-b3e0-18afcebc0bf7"
 					(reference "#PWR0193")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 266.7 349.25 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a0a7c734-cb24-4559-9042-0378299ae461")
+		(property "Reference" "H5"
+			(at 269.24 347.9799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 269.24 350.5199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+			(at 266.7 349.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 266.7 349.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 266.7 349.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "LED-PCB"
+				(path "/51a4082d-670e-42dd-b3e0-18afcebc0bf7"
+					(reference "H5")
 					(unit 1)
 				)
 			)
@@ -33928,6 +34120,70 @@
 		)
 	)
 	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 266.7 361.95 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e09182cd-8028-43d3-92f4-e343e122d461")
+		(property "Reference" "H7"
+			(at 269.24 360.6799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 269.24 363.2199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+			(at 266.7 361.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 266.7 361.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 266.7 361.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "LED-PCB"
+				(path "/51a4082d-670e-42dd-b3e0-18afcebc0bf7"
+					(reference "H7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 74.93 34.29 0)
 		(unit 1)
@@ -37577,7 +37833,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 254 361.95 0)
+		(at 246.38 361.95 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -37586,7 +37842,7 @@
 		(fields_autoplaced yes)
 		(uuid "fb93cb29-ba2f-4b79-9552-1fcdce9c7939")
 		(property "Reference" "H3"
-			(at 256.54 360.6799 0)
+			(at 248.92 360.6799 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37595,7 +37851,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 256.54 363.2199 0)
+			(at 248.92 363.2199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37604,7 +37860,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 254 361.95 0)
+			(at 246.38 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37613,7 +37869,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 254 361.95 0)
+			(at 246.38 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -37622,7 +37878,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 254 361.95 0)
+			(at 246.38 361.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
